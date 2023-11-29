@@ -1,11 +1,35 @@
 <?php
+    $servername = "localhost"; // default server name
+    $username = "animeKing"; // user name that you created
+    $password = "4VPnroTOC6wOU3mn"; // password that you created
+    $dbname = "animeDB";
 
-$sql = "CREATE TABLE animeList (
-	id INT(11) NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    author VARCHAR(100) NOT NULL,
-    year VARCHAR(100) NOT NULL,
-    info VARCHAR(100),
-    addedAt VARCHAR(100) NOT NULL DEFAULT CURRENT_TIME,
-    PRIMARY KEY (id)
-);";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error ."<br>");
+    } 
+    echo "Connected successfully <br>";
+
+    $sql = "CREATE TABLE animeList (
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        Name VARCHAR(100) NOT NULL,
+        Author VARCHAR(100) NOT NULL,
+        Year VARCHAR(100) NOT NULL,
+        Synopsis TEXT,
+        date_Joined DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        image_path VARCHAR(255),
+        PRIMARY KEY (id)
+    );";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Table animeList created successfully<br>";
+    } else {
+        echo "Error creating table: " . $conn->error ."<br>";
+    }
+
+    // Close the connection
+    echo "Disconnected successfully from tableCreation.php <br>";
+    $conn->close();

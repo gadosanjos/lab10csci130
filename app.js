@@ -1,73 +1,72 @@
+// class AnimeList {
+//     constructor(id, name, author, year, info, addedAt){
+//         this.Id = id;
+//         this.Name = name;
+//         this.Author = author;
+//         this.Year = year;
+//         this.Info = info;
+//         this.AddedAt = addedAt;
+//     }
+// }
 
-class AnimeList {
-    constructor(id, name, author, year, info, addedAt){
-        this.Id = id;
-        this.Name = name;
-        this.Author = author;
-        this.Year = year;
-        this.Info = info;
-        this.AddedAt = added;
-    }
+function imageDisplay(input){
+    sections[0].innerHTML = "<img src=" + input +" >";
 }
 
 //String to Object and table display
-function displayMachine(index, data){
-    let table = document.querySelector('table');
+function displayAnime(data, i){
+    let table = document.createElement('table');
+    sections[1].innerHTML = "";
+    sections[1].append(table);
     let tbody = document.createElement('tbody');
-    table.append(tbody);
-
-    for(let i = 0; i < 6; i++){
+    table.appendChild(tbody);
+    let v = data[i];
+    for (let key in v){ 
+        let tkey = document.createElement('td');
+        let tvalue = document.createElement('td');
         let tr = document.createElement('tr');
-        let tdescription = document.createElement('td');
-        let td = document.createElement('td');
-
-        switch(i) {
-            case 0:
-                tdescription.innerText = "Id: ";
-                td.innerText = data[index].Id;
-                tr.append(tdescription);
-                tr.append(td);
-                tbody.append(tr);
-                break;
-            case 1:
-                tdescription.innerText = "Name: ";
-                td.innerText = data[index].Name;
-                tr.append(tdescription);
-                tr.append(td);
-                tbody.append(tr);
-                break;
-            case 2:
-                tdescription.innerText = "Author: ";
-                td.innerText = data[index].Author;
-                tr.append(tdescription);
-                tr.append(td);
-                tbody.append(tr);
-                break;
-            case 3:
-                tdescription.innerText = "Year: ";
-                td.innerText = data[index].Year;
-                tr.append(tdescription);
-                tr.append(td);
-                tbody.append(tr);
+        if(key == "image_path"){
+            imageDisplay(v[key]);
             break;
-            case 4:
-                tdescription.innerText = "Inserted at: ";
-                td.innerText = data[index].addedAt;
-                tr.append(tdescription);
-                tr.append(td);
-                tbody.append(tr);
-            break;
-            case 5:
-                tdescription.innerText = "Synopsis: ";
-                td.innerText = data[index].Info;
-                tr.append(tdescription);
-                tr.append(td);
-                tbody.append(tr);
-            break;
-            default:
-              alert("SOMETHING WENT TERRIBLY WRONG");
         }
+        tkey.innerText = key;
+        tvalue.innerText = v[key];
+        tr.append(tkey);
+        tr.append(tvalue);
+        tbody.append(tr);
     }
+    nextPrevBtn(i, data);
+}
+
+const nextPrevBtn = (i, data) => {
+    let maxlength = data.length - 1;
+    let nextBtn = document.createElement('button');
+    let prevBtn = document.createElement('button');
+    let editBtn = document.createElement('button');
+    let insertBtn = document.createElement('button');
+    nextBtn.innerText = 'Next';
+    prevBtn.innerText = 'Previous';
+    editBtn.innerText = 'Edit';
+    insertBtn.innerText = 'Insert';
+    sections[1].append(prevBtn);
+    sections[1].append(nextBtn);
+    sections[1].append(editBtn);
+    sections[1].append(insertBtn);
+
+    nextBtn.addEventListener('click', () => {
+        if(i == maxlength){
+            i = -1;
+        }
+        i++;
+        displayAnime(data, i);
+    })
+    prevBtn.addEventListener('click', () => {
+        if(i == 0){
+            i = maxlength + 1;
+        }
+        i--;
+        displayAnime(data, i);
+    })
 }
 //AJAX makes request to PHP server to retrieve data from Database
 function generateTable(){
@@ -77,39 +76,10 @@ function generateTable(){
     httpResquest.onreadystatechange = function(){
         if (httpResquest.readyState == 4 && httpResquest.status == 200){
             let responseData = httpResquest.responseText;
-            //alert(httpResquest.responseText);
             let parsedData = JSON.parse(responseData);
-            console.log(parsedData);
-            let table = document.createElement('table');
-            let nextBtn = document.createElement('button');
-            let prevBtn = document.createElement('button');
             let i = 0;
+            displayAnime(parsedData, i);
 
-            nextBtn.innerText = 'Next';
-            prevBtn.innerText = 'Previous';
-
-            sections[0].append(table);
-
-            displayMachine(i, parsedData);
-            sections[0].append(prevBtn);
-            sections[0].append(nextBtn);
-
-            nextBtn.addEventListener('click', function(){
-                i++
-                if (i > parsedData.length - 1){
-                    i = 0;
-                }
-                table.innerHTML = "";
-                displayMachine(i, parsedData);
-            })
-            prevBtn.addEventListener('click', function(){
-                i--
-                if (i < 0){
-                    i = parsedData.length - 1;
-                }
-                table.innerHTML = "";
-                displayMachine(i, parsedData);
-            })
         }
     }
 }
