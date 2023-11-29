@@ -22,7 +22,7 @@ function displayAnime(data, i){
     table.appendChild(tbody);
     let v = data[i];
     for (let key in v){ 
-        let tkey = document.createElement('td');
+        let tkey = document.createElement('th');
         let tvalue = document.createElement('td');
         let tr = document.createElement('tr');
         if(key == "image_path"){
