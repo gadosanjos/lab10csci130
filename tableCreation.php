@@ -1,0 +1,11 @@
+<?php
+
+$sql = "CREATE TABLE animeList (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    year DATE NOT NULL,
+    info TEXT,
+    addedAt DATETIME NOT NULL DEFAULT CURRENT_TIME,
+    PRIMARY KEY (id)
+);";
