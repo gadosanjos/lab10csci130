@@ -1,4 +1,4 @@
-[ ] Fazer a renderização da imagem
+[x] Fazer a renderização da imagem
 [ ] Adicionar um forms para a criação
 - name
 - year

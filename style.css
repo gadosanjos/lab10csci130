@@ -22,9 +22,9 @@ header {
 body {
     background-color: rgb(19, 40, 76);
     background-image: url("images/cherry.avif");
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
     color: #FFFAFB;
 }
 table {
@@ -38,13 +38,15 @@ table {
     opacity: 1;
 }
 button{
-    border-style: outset;
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border: 2px outset #E54B4B;
+    border-radius: 5px;
     background-color: #E54B4B;
     color: #FFFAFB;
     text-align: center;
-    font-weight: bold;
-    width: 50%;
-    margin: 0 auto
+    width: 150px;
 }
 th{
     border-style: outset;

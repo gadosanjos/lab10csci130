@@ -1,14 +1,3 @@
-// class AnimeList {
-//     constructor(id, name, author, year, info, addedAt){
-//         this.Id = id;
-//         this.Name = name;
-//         this.Author = author;
-//         this.Year = year;
-//         this.Info = info;
-//         this.AddedAt = addedAt;
-//     }
-// }
-
 function imageDisplay(input){
     sections[0].innerHTML = "<img src=" + input +" >";
 }
@@ -40,16 +29,20 @@ function displayAnime(data, i){
 
 const nextPrevBtn = (i, data) => {
     let maxlength = data.length - 1;
+
     let nextBtn = document.createElement('button');
     let prevBtn = document.createElement('button');
     let editBtn = document.createElement('button');
     let insertBtn = document.createElement('button');
+
     nextBtn.innerText = 'Next';
     prevBtn.innerText = 'Previous';
     editBtn.innerText = 'Edit';
     insertBtn.innerText = 'Insert';
-    sections[1].append(prevBtn);
-    sections[1].append(nextBtn);
+
+    sections[0].append(prevBtn);
+    sections[0].append(nextBtn);
+
     sections[1].append(editBtn);
     sections[1].append(insertBtn);
 

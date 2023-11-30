@@ -14,7 +14,7 @@
     echo "Connected successfully <br>";
     
     // Delete the database
-    $sql = 'DROP DATABASE animeDB';
+    $sql = 'DROP DATABASE DB';
     if ($conn->query($sql)) {
         echo "Database myDB was successfully dropped<br>";
     } else {
