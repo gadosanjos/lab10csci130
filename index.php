@@ -11,17 +11,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>I'Nime</title>
+    <title>Inime</title>
 </head>
-<body>
+<body id="background-body">
     <header>
-        <h1>I'Nime</h1>
+        <h1>Inime</h1>
     </header>
 
-    <section>
+    <section class="initial-button" id="1">
         <button class="btns">Click here for the BEST anime selection ever!</button>
-    </section>
-    <section>
     </section>
     
     <script src="app.js"></script>

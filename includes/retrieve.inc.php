@@ -13,7 +13,7 @@
     } 
     //echo "Connected successfully <br>";
 
-    $sql = "SELECT * FROM animelist ORDER BY id;";
+    $sql = "SELECT * FROM animeList;";
 
     $result = $conn->query($sql);
 

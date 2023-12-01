@@ -1,19 +1,96 @@
 <?php
 //myserver handles getting data and also inserting data
-    include_once 'includes/retrieve.inc.php';
-
+    
     if(isset($_GET['jsonCollection'])){
+        getItems();
+    }
+    if(isset($_GET['sort'])){
+        $sortBy = $_GET['sortBy'];
+        $asc = $_GET['asc'];
+        sortItems($sortBy, $asc);
+    }
+    function getItems(){   
+            include_once 'includes/retrieve.inc.php';
 
-        if ($result->num_rows > 0) {
-            // Fetch all rows as an associative array
-            $rows = $result->fetch_all(MYSQLI_ASSOC);
+            if ($result->num_rows > 0) {
+                // Fetch all rows as an associative array
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+    
+                // Output the JSON-encoded array
+                echo json_encode($rows);
+            } else {
+                echo "0 results";
+            }
+    }
 
-            // Output the JSON-encoded array
-            echo json_encode($rows);
-        } else {
-            echo "0 results";
+    function sortItems($sortBy, $asc){
+
+        $servername = "localhost"; // default server name
+        $username = "animeKing"; // user name that you created
+        $password = "4VPnroTOC6wOU3mn"; // password that you created
+        $dbname = "animeDB";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error ."<br>");
+        } 
+
+        if($sortBy == 'Name' && $asc == "true"){
+            $sql = "SELECT * FROM animelist ORDER BY Name ASC;";
+            $result = $conn->query($sql);
+            $conn->close();
+            if ($result->num_rows > 0) {
+                // Fetch all rows as an associative array
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+    
+                // Output the JSON-encoded array
+                echo json_encode($rows);
+            } else {
+                echo "0 results";
+            }
+        } else if($sortBy == 'Name' && $asc == 'false'){
+            $sql = "SELECT * FROM animelist ORDER BY Name DESC;";
+            $result = $conn->query($sql);
+            $conn->close();
+            if ($result->num_rows > 0) {
+                // Fetch all rows as an associative array
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+    
+                // Output the JSON-encoded array
+                echo json_encode($rows);
+            } else {
+                echo "0 results";
+            }
+        } else if($sortBy == 'id' && $asc == 'true'){
+            $sql = "SELECT * FROM animelist ORDER BY id ASC;";
+            $result = $conn->query($sql);
+            $conn->close();
+            if ($result->num_rows > 0) {
+                // Fetch all rows as an associative array
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+    
+                // Output the JSON-encoded array
+                echo json_encode($rows);
+            } else {
+                echo "0 results";
+            }
+        } else if($sortBy == 'id' && $asc == 'false'){
+            $sql = "SELECT * FROM animelist ORDER BY id DESC;";
+            $result = $conn->query($sql);
+            $conn->close();
+            if ($result->num_rows > 0) {
+                // Fetch all rows as an associative array
+                $rows = $result->fetch_all(MYSQLI_ASSOC);
+    
+                // Output the JSON-encoded array
+                echo json_encode($rows);
+            } else {
+                echo "0 results";
+            }
         }
-
     }
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
