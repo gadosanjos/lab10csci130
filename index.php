@@ -1,3 +1,10 @@
+<?php
+//SET UP needs to be commented out for first set up.
+    // include_once 'includes/connection.inc.php';
+    // include_once 'includes/tableCreation.inc.php';
+    // include_once 'includes/populate.inc.php';
+    // include_once 'includes/retrieve.inc.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +22,6 @@
         <button class="btns">Click here for the BEST anime selection ever!</button>
     </section>
     <section>
-        
     </section>
     
     <script src="app.js"></script>

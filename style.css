@@ -38,14 +38,12 @@ table {
     opacity: 1;
 }
 button{
-    display: block;
-    margin: 0 auto;
+    margin-left: 45%;
     padding: 10px;
     border: 2px outset #E54B4B;
     border-radius: 5px;
     background-color: #E54B4B;
     color: #FFFAFB;
-    text-align: center;
     width: 150px;
 }
 th{
@@ -65,4 +63,10 @@ fieldset{
 }
 fieldset:hover {
     background-color: #E54B4B;
+}
+#prevBtn {
+    margin-left: 30%;
+}
+#nextBtn {
+    margin-left: 20%;
 }
